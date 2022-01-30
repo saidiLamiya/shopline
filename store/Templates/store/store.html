@@ -1,0 +1,34 @@
+{% extends 'store/main.html' %}
+{% load static %}
+
+{% block image %}
+      <div class="bg-img" href="/">
+        
+        <h1 class="first-txt" >Welcome to Shopline
+        <h2 class="second-txt" >Buy Books Online at Best Prices</h2>
+        <a class="Discover" href="#target">Discover</a>
+        </h1>
+      </div>
+{% endblock image %}
+
+{% block content %}
+
+	<div class="row" id="target">
+		{% for product in products %}
+
+		<div class="col-lg-4">
+			<img class="thumbnail" src="{{product.imageURL}}">
+			<div class="box-element product">
+				<h6><strong>{{product.name}}</strong></h6>
+				<hr>
+
+				<button data-product="{{product.id}}" data-action="add" class="btn btn-outline-secondary add-btn update-cart">Add to Cart</button>
+				<a class="btn btn-outline-success" href="{{ product.get_absolute_url }}">View</a>
+				<h4 style="display: inline-block; float: right"><strong>${{product.price|floatformat:2}}</strong></h4>
+			</div>
+		</div>
+
+		{% endfor %}
+	</div>
+
+{% endblock content %}
